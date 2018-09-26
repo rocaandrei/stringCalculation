@@ -7,7 +7,7 @@ namespace StringCalc
     {
         static void Main(string[] args)
         {
-            string addStr = "22+1+5-6";
+            string addStr = "22+1+5-4";
             //TO DO: daca ii schimb ordinea operatiilor matematice de ex: 22-5+6 nu mai merge si aici ar trebui sa aplic chain of responsability... cred
             //adica cand se schimba symbolul initial sa schimb si eu operatiunea
             int x = Add(RemoveSpace(addStr));
