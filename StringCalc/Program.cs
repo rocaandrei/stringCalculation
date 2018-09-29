@@ -7,12 +7,18 @@ namespace StringCalc
     {
         static void Main(string[] args)
         {
-            string addStr = "22+1+5-4";
-            //TO DO: daca ii schimb ordinea operatiilor matematice de ex: 22-5+6 nu mai merge si aici ar trebui sa aplic chain of responsability... cred
-            //adica cand se schimba symbolul initial sa schimb si eu operatiunea
-            int x = Add(RemoveSpace(addStr));
-            Console.WriteLine(x);
+            IChainOperation chain1Add = new Add();
+            IChainOperation chain2Subtract = new Subtract();
+            IChainOperation chain3Unknow = new Unknow();
+
+            chain1Add.SetNextChain(chain2Subtract);
+            chain2Subtract.SetNextChain(chain3Unknow);
+
+            string test = "1-2-3";
+            int result = chain1Add.Calculate(test);
+            Console.WriteLine(result);
             Console.ReadKey();
+
         }
 
         static int Add(string calculation)
