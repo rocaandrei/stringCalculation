@@ -12,7 +12,7 @@ namespace StringCalc
             IChainOperation chain3Unknow = new Unknow();
 
             chain1Add.SetNextChain(chain2Subtract);
-            chain2Subtract.SetNextChain(chain1Add);
+            chain2Subtract.SetNextChain(chain3Unknow);
 
             string test = "1-2-3"; //aici rezultatul este 2 si ar trebui sa fie 0
             int result = chain1Add.Calculate(test);
@@ -26,7 +26,7 @@ namespace StringCalc
             string test2 = "15+20-10+2";//functioneaza si asta 
             int result2 = chain1Add.Calculate(test2);
             Console.WriteLine(result2);
-            string test3 = "14-10+3-1";
+            string test3 = "14-10+3-1";//functioneaza
             int result3 = chain1Add.Calculate(test3);
             
             Console.WriteLine(result3);

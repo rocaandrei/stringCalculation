@@ -47,7 +47,6 @@ namespace StringCalc
                             b = _nextChain.Calculate(strB);
                         }
                     }
-
                 }
                 result = a + b;
                 return result;
