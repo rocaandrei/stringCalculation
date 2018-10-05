@@ -11,17 +11,32 @@ namespace StringCalc
         private IChainOperation _nextChain;
         public int Calculate(string request)
         {
-            if (request.Contains("+"))//nu est bun if-ul cu contains in cazul 1-2+3, ca poate as inceapa stringu-ul cu - si int.Parese de A sa nu mearga 
+            if (request.Contains("+"))
             {
                 int index = request.IndexOf('+');
                 int a = 0;
                 int b = 0;
                 int result = 0;
-                if(index >= 0)
+                if (index >= 0)
                 {
                     string strA = request.Substring(0, index);
+                    if (!int.TryParse(strA, out a))
+                    {
+                        if (strA.Contains("+"))
+                        {
+                            a = Calculate(strA);
+                        }
+                        else
+                        {
+                            a = _nextChain.Calculate(strA);
+                        }
+                    }
+                    else
+                    {
+                        a = int.Parse(strA);
+                    }
                     string strB = request.Substring(index + 1);
-                    if (!int.TryParse(strB,out b))
+                    if (!int.TryParse(strB, out b))
                     {
                         if (strB.Contains("+"))
                         {
@@ -32,7 +47,7 @@ namespace StringCalc
                             b = _nextChain.Calculate(strB);
                         }
                     }
-                    a = int.Parse(strA);
+
                 }
                 result = a + b;
                 return result;
