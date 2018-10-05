@@ -17,6 +17,9 @@ namespace StringCalc
             string test = "1-2-3"; //aici rezultatul este 2 si ar trebui sa fie 0
             int result = chain1Add.Calculate(test);
             Console.WriteLine(result);
+            string test0 = "1-2+3+5+5";//functioneaza
+            int result0 = chain1Add.Calculate(test0);
+            Console.WriteLine(result0);
             string test1 = "1+2+3";//asta functioneaza
             int result1 = chain1Add.Calculate(test1);
             Console.WriteLine(result1);
@@ -25,7 +28,9 @@ namespace StringCalc
             Console.WriteLine(result2);
             string test3 = "14-10+3-1";
             int result3 = chain1Add.Calculate(test3);
+            
             Console.WriteLine(result3);
+          
             Console.ReadKey();
 
         }
