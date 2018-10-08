@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace StringCalc
 {
-    public class Unknow : IChainOperation
+    public class Unknow : AbstractChainOperation
     {
-        private IChainOperation _nextChain;
-        public int Calculate(string request)
+        private AbstractChainOperation _nextChain;
+        public override int Calculate(string request)
         {
             Console.WriteLine("Unknow operation for: " + request);
             return 0;
         }
 
-        public void SetNextChain(IChainOperation nextChain)
+        public override void SetNextChain(AbstractChainOperation nextChain)
         {
             _nextChain = nextChain;
         }

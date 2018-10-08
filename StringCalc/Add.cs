@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace StringCalc
 {
-    public class Add : IChainOperation
+    public class Add : AbstractChainOperation
     {
-        private IChainOperation _nextChain;
-        public int Calculate(string request)
+        private AbstractChainOperation _nextChain;
+        public override int Calculate(string request)
         {
             if (request.Contains("+"))
             {
@@ -20,33 +20,9 @@ namespace StringCalc
                 if (index >= 0)
                 {
                     string strA = request.Substring(0, index);
-                    if (!int.TryParse(strA, out a))
-                    {
-                        if (strA.Contains("+"))
-                        {
-                            a = Calculate(strA);
-                        }
-                        else
-                        {
-                            a = _nextChain.Calculate(strA);
-                        }
-                    }
-                    else
-                    {
-                        a = int.Parse(strA);
-                    }
+                    a = IsNumber(strA);
                     string strB = request.Substring(index + 1);
-                    if (!int.TryParse(strB, out b))
-                    {
-                        if (strB.Contains("+"))
-                        {
-                            b = Calculate(strB);
-                        }
-                        else
-                        {
-                            b = _nextChain.Calculate(strB);
-                        }
-                    }
+                    b = IsNumber(strB);
                 }
                 result = a + b;
                 return result;
@@ -57,7 +33,7 @@ namespace StringCalc
             }
         }
 
-        public void SetNextChain(IChainOperation nextChain)
+        public override void SetNextChain(AbstractChainOperation nextChain)
         {
             _nextChain = nextChain;
         }
