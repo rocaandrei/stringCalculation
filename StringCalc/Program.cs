@@ -33,6 +33,7 @@ namespace StringCalc
             int result4 = chain1Add.Calculate(RemoveSpace( test4));
             ShowCalculation(RemoveSpace(test4), result4);
 
+            Console.WriteLine("Test from the new computer.");
             Console.ReadKey();
 
         }
